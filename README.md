@@ -1,1 +1,4 @@
-"# SecuredCRM" 
+My final year project
+
+Secure Tutoring management system 
+ The system implemented in Microsoft's ASP.NET MVC, Entity Framework Code First platform, to build a dynamic WEB application that maps the object to operations directly to the database, such as building it. In addition, in terms of security, high-level security principles implemented using the ASP.NET Identity system. With the full support of Dean's office, we have learned deeply how to improve the tutoring management system, and we have built an in-depth plan that, due to the time constraints, we have not been able to implement fully. We would like to continue to create connections between the various updates and the relevant logic that described in the document, and build the export reports and the logic of different requests and notifications.
