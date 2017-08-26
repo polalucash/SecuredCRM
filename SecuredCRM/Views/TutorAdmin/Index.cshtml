@@ -1,0 +1,107 @@
+﻿@model IEnumerable<SecuredCRM.Models.ApplicationUser>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+	ViewBag.Title = "אינדקס מתגברים";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+	<style>
+		table {
+			font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+			border-collapse: collapse;
+			width: 100%;
+		}
+
+			table td, table th {
+				text-align: right;
+				border: 1px solid #ddd;
+				padding: 8px;
+			}
+
+			table tr:nth-child(odd) {
+				background-color: white;
+			}
+
+			table tr:nth-child(even) {
+				background-color: #f2f2f2;
+			}
+
+			table tr:hover {
+				background-color: #ddd;
+			}
+
+			table th {
+				padding-top: 12px;
+				padding-bottom: 12px;
+				text-align: right;
+				background-color: #31a102;
+				color: white;
+			}
+	</style>
+	<title>@ViewBag.Title</title>
+</head>
+<body >
+
+	<div class="container" style="float:none;background-color:white">
+		<h2>@ViewBag.Title</h2>
+		<hr />
+		<p>
+			@Html.ActionLink("צור חדש", "Create")
+		</p>
+		<table id="mytable">
+			<tr>
+
+				<th style="text-align:right">
+					@Html.DisplayNameFor(model => model.FirstName)
+				</th>
+
+				<th style="text-align:right">
+					@Html.DisplayNameFor(model => model.LastName)
+				</th>
+				<th style="text-align:right">
+					@Html.DisplayNameFor(model => model.Campus)
+				</th>
+				<th style="text-align:right">
+					@Html.DisplayNameFor(model => model.Email)
+				</th>
+				<th style="text-align:right">
+					@Html.DisplayNameFor(model => model.PhoneNumber)
+				</th>
+				<th style="text-align:right"></th>
+			</tr>
+
+			@foreach (var item in Model)
+			{
+				<tr>
+					<td>
+						@Html.DisplayFor(modelItem => item.FirstName)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.LastName)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Campus)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Email)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.PhoneNumber)
+					</td>
+					<td style="text-align:center">
+						@Html.ActionLink("עריכה", "Edit", new { id = item.Id }) |
+						@Html.ActionLink("פרטים", "Details", new { id = item.Id }) |
+						@Html.ActionLink("מחיקה", "Delete", new { id = item.Id })
+					</td>
+				</tr>
+			}
+		</table>
+	</div>
+
+</body>
+</html>

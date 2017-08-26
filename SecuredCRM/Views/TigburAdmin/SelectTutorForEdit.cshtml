@@ -1,0 +1,55 @@
+﻿@model SecuredCRM.Models.Tigbur
+@{
+	ViewBag.Title = "עריכת תגבור - בחירת מתגבר";
+}
+
+<div class="container-fluid" style="float:right;background-color:white">
+	<h2>@ViewBag.Title</h2>
+	<hr />
+	@using (Html.BeginForm("Edit", "TigburAdmin", FormMethod.Post))
+	{
+		<div class="form-horizontal">
+			@{
+				string Course = TempData.Peek("CourseId").ToString();
+			}
+
+			@Html.AntiForgeryToken()
+			@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+			@Html.HiddenFor(model => model.Id)
+			@Html.HiddenFor(model => model.TuteeName, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+			@Html.HiddenFor(model => model.TuteeEmail, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+			@Html.HiddenFor(model => model.TuteePhone, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+			@Html.HiddenFor(model => model.CourseId, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @Value = Course } })
+
+			<div class="form-group">
+				<div class="col-md-10">
+					@Html.DropDownList("ApplicationUserId", (IEnumerable<SelectListItem>)ViewBag.ApplicationUserId, "בחר מתגבר ", new { id = "ApplicationUserId", @class = "form-control" })
+					@Html.ValidationMessageFor(model => model.ApplicationUserId, "נא לבחור מתגבר", new { @class = "text-danger" })
+				</div>
+				@Html.LabelFor(model => model.ApplicationUserId, "מתגבר", htmlAttributes: new { @class = "control-label col-md-2" })
+			</div>
+
+			@Html.EditorFor(model => model.AssignmentStartDate, new { htmlAttributes = new {  hidden = "hidden", @readonly = "readonly" } })
+			@Html.EditorFor(model => model.AssignmentEndDate, new { htmlAttributes = new {  hidden = "hidden", @readonly = "readonly" } })
+			@Html.HiddenFor(model => model.AssignmentTotal, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+			@Html.HiddenFor(model => model.AssignmentDone, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+			@Html.HiddenFor(model => model.AssignmentDoneApproved, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+			@Html.HiddenFor(model => model.Comments, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+			@Html.HiddenFor(model => model.FollowUp, new { htmlAttributes = new { @readonly = "readonly" } })
+
+			<div class="form-group">
+				<div class="col-md-offset-2 col-md-10">
+					<input type="submit" value="שמירה" class="btn btn-default" />
+				</div>
+			</div>
+		</div>
+			}
+
+	<div>
+		@Html.ActionLink("בחזרה לעמוד הראשי", "Index")
+	</div>
+</div>
+
+		@section Scripts {
+			@Scripts.Render("~/bundles/jqueryval")
+		}

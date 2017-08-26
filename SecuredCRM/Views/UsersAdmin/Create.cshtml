@@ -1,0 +1,83 @@
+﻿@model SecuredCRM.Models.RegisterViewModel
+@{
+	ViewBag.Title = "יצירת חשבון משתמש חדש";
+
+}
+<div class="container-fluid" style="float:right;background-color:white">
+	<h2>@ViewBag.Title</h2>
+	<hr />
+	@using (Html.BeginForm("Create", "UsersAdmin", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+	{
+		@Html.AntiForgeryToken()
+		@Html.ValidationSummary("", new { @class = "text-error" })
+
+		<div class="form-group">
+			<div class="col-md-10">
+				@Html.TextBoxFor(m => m.TrueId, new { @class = "form-control" })
+			</div>
+			@Html.LabelFor(model => model.TrueId, new { @class = "control-label col-md-2" })
+		</div>
+		<div class="form-group">
+			<div class="col-md-10">
+				@Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
+			</div>
+			@Html.LabelFor(model => model.FirstName, new { @class = "control-label col-md-2" })
+		</div>
+		<div class="form-group">
+			<div class="col-md-10">
+				@Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
+			</div>
+			@Html.LabelFor(model => model.LastName, new { @class = "control-label col-md-2" })
+		</div>
+		<div class="form-group">
+			<div class="col-md-10">
+				@Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+			</div>
+			@Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+		</div>
+		<div class="form-group">
+			<div class="col-md-10">
+				@Html.TextBoxFor(m => m.Campus, new { @class = "form-control" })
+			</div>
+			@Html.LabelFor(model => model.Campus, new { @class = "control-label col-md-2" })
+		</div>
+		<div class="form-group">
+			<div class="col-md-10">
+				@Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control" })
+			</div>
+			@Html.LabelFor(model => model.PhoneNumber, new { @class = "control-label col-md-2" })
+		</div>
+		@*<div class="form-group">
+				@Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+				<div class="col-md-10">
+					@Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+				</div>
+			</div>
+			<div class="form-group">
+				@Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
+				<div class="col-md-10">
+					@Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+				</div>
+			</div>*@
+		<hr />
+		@Html.Label("הרשאות", new { @class = "control-label col-md-2", @style = "float:right" })
+		<div class="form-group">
+			<div class="col-md-10">
+				@foreach (var item in (SelectList)ViewBag.RoleId)
+				{
+					@Html.Label(item.Value, new { @class = "control-label" })
+					<input type="checkbox" name="SelectedRoles" value="@item.Value" class="checkbox-inline" />
+				}
+			</div>
+
+		</div>
+		<div class="form-group">
+			<div class="col-md-offset-2 col-md-10">
+				<input type="submit" class="btn btn-default" value="צור" />
+			</div>
+		</div>
+	}
+</div>
+	@section Scripts {
+		@Scripts.Render("~/bundles/jqueryval")
+	}

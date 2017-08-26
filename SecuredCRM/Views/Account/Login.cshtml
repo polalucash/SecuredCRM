@@ -1,0 +1,53 @@
+﻿@model SecuredCRM.Models.LoginViewModel
+
+@{
+	ViewBag.Title = "כניסה";
+}
+
+<!DOCTYPE html>
+
+<head>
+	<style>
+	</style>
+	<link href="~/Content/bootstrap/css/bootstrap.css" rel="stylesheet" />
+	<title>@ViewBag.Title</title>
+</head>
+<body>
+	<div class="container-fluid" style="float:right">
+		<h2>@ViewBag.Title</h2>
+		<section id="loginForm">
+			@using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+			{
+				<h4>נא להזין את הנתונים הבאים על מנת להיכנס</h4>
+					<hr />
+					@Html.AntiForgeryToken()
+					@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+					<div class="form-group">
+						<div class="col-md-10">
+							@Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+							@Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+						</div>
+						@Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+					</div>
+					<div class="form-group">
+						<div class="col-md-10">
+							@Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+							@Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+						</div>
+						@Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+					</div>
+					<div class="form-group">
+						<div class="col-md-offset-2 col-md-10">
+							<input type="submit" value="כניסה" class="btn btn-default" />
+						</div>
+					</div>
+					<p>
+						@Html.ActionLink("שכחתי סיסמה", "ForgotPassword")
+					</p>
+			}
+		</section>
+	</div>
+	@section Scripts {
+		@Scripts.Render("~/bundles/jqueryval")
+	}
+</body>

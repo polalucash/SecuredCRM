@@ -1,0 +1,91 @@
+﻿@model SecuredCRM.Models.ApplicationUser
+
+@{
+	ViewBag.Title = "פרטי המתגבר";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div  class="container-fluid" style="float:right;direction:rtl">
+	<hr />
+	<dl class="dl-horizontal">
+
+		<dt>
+			@Html.DisplayNameFor(model => model.TrueId)
+		</dt>
+		<dd>
+			@Html.DisplayFor(model => model.TrueId)
+		</dd>
+		<dt>
+			@Html.DisplayNameFor(model => model.LastName)
+		</dt>
+		<dd>
+			@Html.DisplayFor(model => model.LastName)
+		</dd>
+		<dt>
+			@Html.DisplayNameFor(model => model.FirstName)
+		</dt>
+		<dd>
+			@Html.DisplayFor(model => model.FirstName)
+		</dd>
+		<dt>
+			@Html.DisplayNameFor(model => model.Email)
+		</dt>
+		<dd>
+			@Html.DisplayFor(model => model.Email)
+		</dd>
+		<dt>
+			@Html.DisplayNameFor(model => model.PhoneNumber)
+		</dt>
+		<dd>
+			@Html.DisplayFor(model => model.PhoneNumber)
+		</dd>
+		<dt>
+			@Html.DisplayNameFor(model => model.Campus)
+		</dt>
+		<dd>
+			@Html.DisplayFor(model => model.Campus)
+		</dd>
+	</dl>
+</div>
+<p>
+	@Html.ActionLink("עריכה", "Edit", new { id = Model.Id }) |
+	@Html.ActionLink("בחזרה לעמוד הראשי", "Index")
+</p>
+<br />
+
+
+@if (ViewBag.CountCourses == 0)
+{
+	<hr />
+	<p>המתגבר לא רשום לקורס</p>
+}
+else
+{
+	<h4>רשימתת קורסים עבור המתגבר</h4>
+	<table class="table">
+
+		@foreach (var item in ViewBag.Courses)
+		{
+			<tr>
+				<td>
+					@item.Name |
+					@Html.ActionLink("הסרת הקורס", "DeleteCourseTutor", new { id = Model.Id, CourseId = item.Id })
+				</td>
+
+			</tr>
+		}
+	</table>
+};
+<p>
+@using (Html.BeginForm("InsertCourse", "TutorAdmin", new {ApplicationUserId = Model.Id } ,FormMethod.Post))
+{
+
+	@Html.DropDownList("Id",(IEnumerable<SelectListItem>)ViewBag.CoursesList, "בחר קורס להוספה", new { @class = "form-control" })
+	<input type="submit" value="הוסף" />
+
+}
+</p>
+
+
+

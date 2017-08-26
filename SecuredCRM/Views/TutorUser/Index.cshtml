@@ -1,0 +1,140 @@
+﻿@model SecuredCRM.Models.IndexTutorViewModel
+
+
+<div class="container" style="float:none;background-color:white; ">
+
+	<div style="margin:4px; width:30%;">
+		@if (Model.myUnavailableInDates.Count > 0)
+			{
+			<h4>
+				תאריכים בהם אני לא פנוי
+			</h4>
+			<p >
+
+				<br />
+				@Html.ActionLink("הוספת תאריכים בהם אני לא פנוי", "UnavailableDateCreate")
+			</p>
+			<table class="table" >
+				@foreach (var item in Model.myUnavailableInDates)
+				{
+					<tr>
+						<td>
+							@Html.DisplayFor(modelItem => item.StartDate)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => item.EndDate)
+						</td>
+						<td>
+							@Html.ActionLink("מחיקה", "DeleteUnavailableInDate", item)
+						</td>
+					</tr>
+				}
+			</table>
+
+				<br />
+			}
+	</div>
+	<hr />
+	<div style="margin:4px; width:30%;">
+		@if (Model.myCourses.Count > 0)
+			{
+			<h4>
+				הקורסים שאני מלמד
+			</h4>
+				<table class="table table-active">
+					@foreach (var item in Model.myCourses)
+					{
+						<tr>
+							<td style="text-align:center">
+								@Html.DisplayFor(modelItem => item.Name)
+							</td>
+						</tr>
+					}
+				</table>
+				<br />
+			}
+	</div>
+	<div class="container-fluid" style="background-color:white">
+		@if (Model.myTigburs.Count > 0)
+			{
+			<h4>התגבורים הקיימים</h4>
+			<hr />
+			<table class="table-responsive" id="mytable">
+				<thead>
+					<tr>
+						<th style="text-align:right">
+							@Html.DisplayNameFor(model => model.myTigburs.First().TuteeName)
+						</th>
+						<th style="text-align:right">
+							@Html.DisplayNameFor(model => model.myTigburs.First().TuteeEmail)
+						</th>
+						<th style="text-align:right">
+							@Html.DisplayNameFor(model => model.myTigburs.First().TuteePhone)
+						</th>
+						<th style="text-align:right">
+							@Html.DisplayNameFor(model => model.myTigburs.First().CourseTutor.Course.Name)
+						</th>
+						<th style="text-align:right">
+							@Html.DisplayNameFor(model => model.myTigburs.First().AssignmentStartDate)
+						</th>
+						<th style="text-align:right">
+							@Html.DisplayNameFor(model => model.myTigburs.First().AssignmentEndDate)
+						</th>
+						<th style="text-align:right">
+							@Html.DisplayNameFor(model => model.myTigburs.First().AssignmentTotal)
+						</th>
+						<th style="text-align:right">
+							@Html.DisplayNameFor(model => model.myTigburs.First().AssignmentDone)
+						</th>
+						<th style="text-align:right">
+							@Html.DisplayNameFor(model => model.myTigburs.First().AssignmentDoneApproved)
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					@foreach (var item in Model.myTigburs)
+					{
+						<tr>
+							<td>
+								@Html.DisplayFor(modelItem => item.TuteeName)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.TuteeEmail)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.TuteePhone)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.CourseTutor.Course.Name)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.AssignmentStartDate)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.AssignmentEndDate)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.AssignmentTotal)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.AssignmentDone)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.AssignmentDoneApproved)
+							</td>
+						</tr>
+					}
+				</tbody>
+			</table>
+		}
+		else
+		{
+
+			<h4>כרגע לא קיימים תגבורים</h4>
+			}
+
+	</div>
+	</div>
+	@section Scripts {
+		@Scripts.Render("~/bundles/jqueryval")
+	}

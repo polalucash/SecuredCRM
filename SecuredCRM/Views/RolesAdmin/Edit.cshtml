@@ -1,0 +1,48 @@
+﻿@model SecuredCRM.Models.RoleViewModel
+
+@{
+	ViewBag.Title = "עריכת הרשאה";
+}
+<div class="container-fluid" style="float:right;background-color:white">
+	<h2>@ViewBag.Title</h2>
+	<hr />
+	@using (Html.BeginForm())
+	{
+		@Html.AntiForgeryToken()
+		@Html.ValidationSummary(true)
+		@Html.HiddenFor(model => model.Id)
+		<div class="form-horizontal">
+			<h4>הרשאה</h4>
+			<hr />
+
+			<div class="form-group">
+				<div class="col-md-10">
+					@Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+					@Html.ValidationMessageFor(model => model.Name)
+				</div>
+				@Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })
+			</div>
+			<div class="form-group">
+				<div class="col-md-10">
+					@Html.TextBoxFor(model => model.Description, new { @class = "form-control" })
+					@Html.ValidationMessageFor(model => model.Description)
+				</div>
+				@Html.LabelFor(model => model.Description, new { @class = "control-label col-md-2" })
+			</div>
+
+			<div class="form-group">
+				<div class="col-md-offset-2 col-md-10">
+					<input type="submit" value="שמירה" class="btn btn-default" />
+				</div>
+			</div>
+		</div>
+			}
+
+	<div>
+		@Html.ActionLink("בחזרה לעמוד הראשי", "Index")
+	</div>
+	@section Scripts {
+		@Scripts.Render("~/bundles/jqueryval")
+	}
+
+</div>

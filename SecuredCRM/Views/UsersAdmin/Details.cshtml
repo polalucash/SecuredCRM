@@ -1,0 +1,72 @@
+﻿@model SecuredCRM.Models.ApplicationUser
+
+@{
+	ViewBag.Title = "פרטי המשתמש";
+}
+
+<div class="container-fluid" style="float:right;background-color:white">
+	<h2>@ViewBag.Title</h2>
+	<hr />
+	<dl class="align-middle">
+		<dt>
+			@Html.DisplayNameFor(model => model.TrueId)
+		</dt>
+		<dd>
+			@Html.DisplayFor(model => model.TrueId)
+		</dd>
+		<dt>
+			@Html.DisplayNameFor(model => model.FirstName)
+		</dt>
+		<dd>
+			@Html.DisplayFor(model => model.FirstName)
+		</dd>
+		<dt>
+			@Html.DisplayNameFor(model => model.LastName)
+		</dt>
+		<dd>
+			@Html.DisplayFor(model => model.LastName)
+		</dd>
+		<dt>
+			@Html.DisplayNameFor(model => model.PhoneNumber)
+		</dt>
+		<dd>
+			@Html.DisplayFor(model => model.PhoneNumber)
+		</dd>
+		<dt>
+			@Html.DisplayNameFor(model => model.Email)
+		</dt>
+		<dd>
+			@Html.DisplayFor(model => model.Email)
+		</dd>
+		<dt>
+			@Html.DisplayNameFor(model => model.Campus)
+		</dt>
+		<dd>
+			@Html.DisplayFor(model => model.Campus)
+		</dd>
+	</dl>
+	@if (ViewBag.RoleNames.Count == 0)
+	{
+		<h4>לא נמצאו הרשאות עבור המשתמש</h4>
+	}
+	else
+	{
+		<dl class="align-middle">
+
+			<dt>הרשאות המשתמש</dt>
+			@foreach (var item in ViewBag.RoleNames)
+			{
+				<dd>
+					@item
+				</dd>
+			}
+		</dl>
+	}
+
+	<p>
+		@Html.ActionLink("עריכת המשתמש", "Edit", new { id = Model.Id }) |
+		@Html.ActionLink("בחזרה לעמוד הראשי", "Index")
+	</p>
+</div>
+
+

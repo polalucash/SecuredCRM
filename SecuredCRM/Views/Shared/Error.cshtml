@@ -1,0 +1,19 @@
+﻿@model System.Web.Mvc.HandleErrorInfo
+
+@{
+	ViewBag.Title = "שגיאה";
+}
+
+<div class="container-fluid" style="float:right;direction:rtl">
+	<h1 class="text-danger">@ViewBag.Title</h1>
+	@{
+		if (String.IsNullOrEmpty(ViewBag.errorMessage))
+		{
+			<h2 class="text-danger">קרתה שגיאה בעיבוד הנתונים</h2>
+		}
+		else
+		{
+			<h2 class="text-danger">@ViewBag.errorMessage</h2>
+		}
+	}
+</div>

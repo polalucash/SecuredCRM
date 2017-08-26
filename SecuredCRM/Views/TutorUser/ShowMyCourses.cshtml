@@ -1,0 +1,29 @@
+﻿@model IEnumerable<SecuredCRM.Models.Course>
+
+<p>
+</p>
+<table class="table">
+    <tr>
+        <th style="text-align:right">
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th style="text-align:right">
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th style="text-align:right"></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+        </td>
+    </tr>
+}
+
+</table>

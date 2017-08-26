@@ -1,0 +1,34 @@
+﻿@model SecuredCRM.Models.UnavailableInDate
+@{
+	ViewBag.Title = "מחיקת תאריך בו לא פנוי";
+}
+<div class="container-fluid" style="float:right;background-color:white">
+
+	<h2>@ViewBag.Title</h2>
+	<hr />
+		<dl class="align-middle">
+			<dt>
+				@Html.DisplayNameFor(model => model.StartDate)
+			</dt>
+			<dd>
+				@Html.DisplayFor(model => model.StartDate)
+			</dd>
+			<dt>
+				@Html.DisplayNameFor(model => model.EndDate)
+			</dt>
+			<dd>
+				@Html.DisplayFor(model => model.EndDate)
+			</dd>
+		</dl>
+
+		@using (Html.BeginForm())
+		{
+			@Html.AntiForgeryToken()
+
+			<div class="form-actions no-color">
+				<input type="submit" value="מחיקה" class="btn btn-default" /> |
+				@Html.ActionLink("בחזרה לעמוד הראשי", "Index")
+			</div>
+		}
+	</div>
+

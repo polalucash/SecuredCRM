@@ -1,0 +1,53 @@
+﻿@model SecuredCRM.Models.Tigbur
+@{
+	ViewBag.Title = "עריכת תגבור - בחירת קורס";
+}
+<div class="container-fluid" style="float:right;background-color:white">
+
+	<h2>@ViewBag.Title</h2>
+	<hr />
+	@using (Html.BeginForm("SelectTutorForEdit", "TigburAdmin", FormMethod.Post))
+	{
+		<div class="form-horizontal">
+			@Html.AntiForgeryToken()
+			@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+			@Html.HiddenFor(model => model.Id)
+			@Html.HiddenFor(model => model.TuteeName, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+			@Html.HiddenFor(model => model.TuteeEmail, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+			@Html.HiddenFor(model => model.TuteePhone, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+
+
+			<div class="form-group">
+				<div class="col-md-10">
+					@Html.DropDownList("CourseId", null, htmlAttributes: new { @class = "form-control" })
+					@Html.ValidationMessageFor(model => model.CourseId, "", new { @class = "text-danger" })
+				</div>
+				@Html.LabelFor(model => model.CourseId, "קורס", htmlAttributes: new { @class = "control-label col-md-2" })
+			</div>
+
+
+			@Html.EditorFor(model => model.AssignmentStartDate, new { htmlAttributes = new {  @readonly = "readonly", hidden = "hidden" } })
+			@Html.EditorFor(model => model.AssignmentEndDate, new { htmlAttributes = new {  @readonly = "readonly", hidden = "hidden" } })
+			@Html.HiddenFor(model => model.AssignmentTotal, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+			@Html.HiddenFor(model => model.AssignmentDone, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+			@Html.HiddenFor(model => model.AssignmentDoneApproved, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+			@Html.HiddenFor(model => model.Comments, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+			@Html.HiddenFor(model => model.FollowUp, new { htmlAttributes = new { @readonly = "readonly" } })
+
+
+
+
+			<div class="form-group">
+				<div class="col-md-offset-2 col-md-10">
+					<input type="submit" value="שמירה" class="btn btn-default" />
+				</div>
+			</div>
+		</div>
+	}
+	<div>
+		@Html.ActionLink("בחזרה לעמוד הראשי", "Index")
+	</div>
+</div>
+@section Scripts {
+	@Scripts.Render("~/bundles/jqueryval")
+}

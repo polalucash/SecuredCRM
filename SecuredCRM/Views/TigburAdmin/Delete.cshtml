@@ -1,0 +1,160 @@
+﻿@model SecuredCRM.Models.Tigbur
+
+@{
+	ViewBag.Title = "מחיקת התגבור";
+
+}
+
+
+	<div class="container">
+
+		<h4>@ViewBag.Title</h4>
+		<h3 >האם ברצונך למחוק את התגבור הבא?</h3>
+		<hr />
+		<div class="row" style="background-color:white;">
+			<div class="col-md-4" style="float: right;">
+				<dl class="glyphicon-list">
+					<dt>
+						שם המתוגבר
+					</dt>
+
+					<dd>
+						@Html.DisplayFor(model => model.TuteeName)
+					</dd>
+
+					<dt>
+						@Html.DisplayNameFor(model => model.TuteeEmail)
+					</dt>
+
+					<dd>
+						@Html.DisplayFor(model => model.TuteeEmail)
+					</dd>
+
+					<dt>
+						@Html.DisplayNameFor(model => model.TuteePhone)
+					</dt>
+
+					<dd>
+						@Html.DisplayFor(model => model.TuteePhone)
+					</dd>
+
+				</dl>
+
+				<dl class="glyphicon-list">
+					<dt>
+						שם המתגבר
+					</dt>
+
+					<dd>
+						@Html.DisplayFor(model => model.CourseTutor.ApplicationUser.Name)
+					</dd>
+
+					<dt>
+						אימייל המתגבר
+					</dt>
+
+					<dd>
+						@Html.DisplayFor(model => model.CourseTutor.ApplicationUser.Email)
+					</dd>
+
+					<dt>
+						טלפון המתגבר
+					</dt>
+
+					<dd>
+						@Html.DisplayFor(model => model.CourseTutor.ApplicationUser.PhoneNumber)
+					</dd>
+				</dl>
+			</div>
+			<div class="col-md-4" style="float: right;">
+				<dl class="glyphicon-list">
+					<dt>
+						@Html.DisplayNameFor(model => model.CourseTutor.Course.Name)
+					</dt>
+
+					<dd>
+						@Html.DisplayFor(model => model.CourseTutor.Course.Name)
+					</dd>
+
+					<dt>
+						@Html.DisplayNameFor(model => model.Category.Name)
+					</dt>
+
+					<dd>
+						@Html.DisplayFor(model => model.Category.Name)
+					</dd>
+
+					<dt>
+						@Html.DisplayNameFor(model => model.Comments)
+					</dt>
+
+					<dd>
+						@Html.DisplayFor(model => model.Comments)
+					</dd>
+					<dt>
+						@Html.DisplayNameFor(model => model.FollowUp)
+					</dt>
+
+					<dd>
+						@Html.DisplayFor(model => model.FollowUp)
+					</dd>
+				</dl>
+			</div>
+			<div class="col-md-4" style="float: right;">
+				<dl class="glyphicon-listlist-group-item">
+					<dt>
+						@Html.DisplayNameFor(model => model.AssignmentStartDate)
+					</dt>
+
+					<dd>
+						@Html.DisplayFor(model => model.AssignmentStartDate)
+					</dd>
+
+					<dt>
+						@Html.DisplayNameFor(model => model.AssignmentEndDate)
+					</dt>
+
+					<dd>
+						@Html.DisplayFor(model => model.AssignmentEndDate)
+					</dd>
+
+					<dt>
+						@Html.DisplayNameFor(model => model.AssignmentTotal)
+					</dt>
+
+					<dd>
+						@Html.DisplayFor(model => model.AssignmentTotal)
+					</dd>
+
+					<dt>
+						@Html.DisplayNameFor(model => model.AssignmentDone)
+					</dt>
+
+					<dd>
+						@Html.DisplayFor(model => model.AssignmentDone)
+					</dd>
+
+					<dt>
+						@Html.DisplayNameFor(model => model.AssignmentDoneApproved)
+					</dt>
+
+					<dd>
+						@Html.DisplayFor(model => model.AssignmentDoneApproved)
+					</dd>
+
+
+				</dl>
+			</div>
+
+		</div>
+		<hr />
+		@using (Html.BeginForm())
+		{
+			@Html.AntiForgeryToken()
+
+			<div class="form-actions no-color">
+				<input type="submit" value="מחיקה" class="btn btn-default" /> |
+				@Html.ActionLink("בחזרה לעמוד הראשי","Index","", htmlAttributes: new { @class = "btn btn-default" })
+			</div>
+		}
+	</div>

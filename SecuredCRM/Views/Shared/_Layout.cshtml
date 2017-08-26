@@ -1,0 +1,102 @@
+﻿@{
+	ViewBag.Title = "מערכת ניהול תגבורים";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>@ViewBag.Title</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<style>
+		body {
+			background-image: url('../../pics/back b.png');
+			background-size: contain;
+			background-position: bottom;
+			background-attachment: fixed;
+			background-repeat: no-repeat;
+		}
+		hr {
+			border-color: #31a102;
+		}
+		table {
+			font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+			border-collapse: collapse;
+			width: 100%;
+		}
+
+			table td, table th {
+				text-align: right;
+				border: 1px solid #ddd;
+				padding: 8px;
+			}
+
+			table tr{
+				background-color: white;
+			}
+
+			table tr:hover {
+				background-color: #ddd;
+			}
+
+			table th {
+				padding-top: 12px;
+				padding-bottom: 12px;
+				text-align: right;
+				background-color: #31a102;
+				color: white;
+			}
+
+
+	</style>
+	<link href="~/Content/bootstrap/css/bootstrap.css" rel="stylesheet" />
+	<link href="~/Content/bootstrap/css/bootstrap-theme.css" rel="stylesheet" />
+</head>
+<body>
+	<script src="~/Scripts/jquery-3.1.1.js"></script>
+	<script src="~/Scripts/jquery.validate.js"></script>
+	<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+	<script src="~/Content/bootstrap/js/bootstrap.js"></script>
+	<script src="~/Scripts/respond.js"></script>
+	<script src="~/Scripts/modernizr-2.8.3.js"></script>
+	<nav class="navbar navbar-default" style="background:linear-gradient( rgb(255, 255, 255) 0%,rgb(153, 247, 0) 100%)">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<div class="navbar-brand">@Html.ActionLink("מערכת ניהול התגבורים", "Index", "Home", htmlAttributes: new { @style = "color:#022802;" })</div>
+				<ul class="nav navbar-nav">
+					<li class="active">@Html.ActionLink("דף הבית", "Index", "Home")</li>
+					@if (Request.IsAuthenticated && User.IsInRole("Admin"))
+					{
+						<li>@Html.ActionLink("הרשאות", "Index", "RolesAdmin")</li>
+						<li>@Html.ActionLink("משתמשים", "Index", "UsersAdmin")</li>
+						<li>@Html.ActionLink("מתגברים", "Index", "TutorAdmin")</li>
+						<li>@Html.ActionLink("תגבורים", "Index", "TigburAdmin")</li>
+						<li>@Html.ActionLink("בקשות", "Index", "")</li>
+					}
+					else if (Request.IsAuthenticated && User.IsInRole("TutorAdmin"))
+					{
+						<li>@Html.ActionLink("מתגברים", "Index", "TutorAdmin")</li>
+						<li>@Html.ActionLink("תגבורים", "Index", "TigburAdmin")</li>
+						<li>@Html.ActionLink("בקשות", "Index", "")</li>
+					}
+					else if(Request.IsAuthenticated && User.IsInRole("Tutor"))
+					{
+						<li>@Html.ActionLink("דף ראשי", "Index", "TutorUser")</li>
+						<li>@Html.ActionLink("לא זמין בתאריכים", "ShowMyUnavailableDates", "TutorUser")</li>
+						<li>@Html.ActionLink("בקשות", "Index", "TutorUser")	</li>
+					}
+				</ul>
+			</div>
+			@Html.Partial("_LoginPartial")
+		</div>
+	</nav>
+
+	<div class="body-content" style="direction:rtl; text-align:right;">
+		@RenderBody()
+
+	</div>
+		@RenderSection("scripts", required: false)
+
+</body>
+
+</html>

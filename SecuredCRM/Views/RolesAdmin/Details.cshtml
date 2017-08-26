@@ -1,0 +1,52 @@
+﻿@model SecuredCRM.Models.ApplicationRole
+
+@{
+	ViewBag.Title = "פרטי ההרשאה";
+}
+
+<div class="container-fluid" style="float:right;background-color:white">
+	<h2>@ViewBag.Title</h2>
+	<hr />
+	<dl class="align-middle">
+		<dt>
+			ההרשאה
+		</dt>
+		<dd>
+			@Html.DisplayFor(model => model.Name)
+		<dd />
+		<dt>
+			תאור
+		</dt>
+		<dd>
+		@Html.DisplayFor(model => model.Description)
+		</dd>
+	</dl>
+	<hr />
+		<h4>רשימת המשמתשים בהרשאה</h4>
+		<br />
+		@if (ViewBag.UserCount == 0)
+		{
+			<hr />
+			<p>לא נמצאו משתמשים בהרשאה</p>
+		}
+
+		<table class="table">
+
+			@foreach (var item in ViewBag.Users)
+			{
+				<tr>
+					<td>
+						@item.UserName
+					</td>
+				</tr>
+			}
+		</table>
+		<p>
+			@Html.ActionLink("עריכה", "Edit", new { id = Model.Id }) |
+			@Html.ActionLink("בחזרה לעמוד הראשי", "Index")
+		</p>
+</div>
+
+
+
+

@@ -1,0 +1,77 @@
+﻿@model IEnumerable<SecuredCRM.Models.Tigbur>
+
+<p>
+</p>
+<table class="table">
+    <tr>
+		<th style="text-align:right">
+			@Html.DisplayNameFor(model => model.AssignmentStartDate)
+		</th>
+		<th style="text-align:right">
+			@Html.DisplayNameFor(model => model.AssignmentEndDate)
+		</th>
+		<th style="text-align:right">
+			@Html.DisplayNameFor(model => model.AssignmentTotal)
+		</th>
+		<th style="text-align:right">
+			@Html.DisplayNameFor(model => model.AssignmentDone)
+		</th>
+		<th style="text-align:right">
+			@Html.DisplayNameFor(model => model.AssignmentDoneApproved)
+		</th>
+		<th style="text-align:right">
+			@Html.DisplayNameFor(model => model.CourseTutor.Course.Name)
+		</th>
+		<th style="text-align:right">
+			@Html.DisplayNameFor(model => model.Category.Name)
+		</th>
+        <th style="text-align:right">
+            @Html.DisplayNameFor(model => model.TuteeName)
+        </th>
+        <th style="text-align:right">
+            @Html.DisplayNameFor(model => model.TuteeEmail)
+        </th>
+        <th style="text-align:right">
+            @Html.DisplayNameFor(model => model.TuteePhone)
+        </th>
+        <th style="text-align:right"></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+		<td>
+			@Html.DisplayFor(modelItem => item.AssignmentStartDate)
+		</td>
+		<td>
+			@Html.DisplayFor(modelItem => item.AssignmentEndDate)
+		</td>
+		<td>
+			@Html.DisplayFor(modelItem => item.AssignmentTotal)
+		</td>
+		<td>
+			@Html.DisplayFor(modelItem => item.AssignmentDone)
+		</td>
+		<td>
+			@Html.DisplayFor(modelItem => item.AssignmentDoneApproved)
+		</td>
+		<td>
+			@Html.DisplayFor(modelItem => item.CourseTutor.Course.Name)
+		</td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TuteeName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TuteeEmail)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TuteePhone)
+        </td>
+        <td>
+            @Html.ActionLink("עריכה", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("פרטים", "Details", new { id=item.Id }) |
+            @Html.ActionLink("מחיקה", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

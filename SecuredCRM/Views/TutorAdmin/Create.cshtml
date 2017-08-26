@@ -1,0 +1,68 @@
+﻿@model SecuredCRM.Models.TutorIndexModel
+@{
+	ViewBag.Title = "מתגבר חדש";
+
+}
+<div class="container-fluid" style="float:right;background-color:white">
+
+	<h2>@ViewBag.Title</h2>
+	<hr />
+	@using (Html.BeginForm("Create", "TutorAdmin", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+	{
+		@Html.AntiForgeryToken()
+		<h4>הזנת מתגבר חדש למערכת</h4>
+		<div class="form-horizontal" style="float:right;direction:rtl;background-color:white">
+
+			@Html.ValidationSummary("", new { @class = "text-error" })
+			<div class="form-group">
+				<div class="col-md-10">
+					@Html.TextBoxFor(m => m.TrueId, new { @class = "form-control" })
+				</div>
+				@Html.LabelFor(model => model.TrueId, new { @class = "control-label col-md-2" })
+			</div>
+			<div class="form-group">
+				<div class="col-md-10">
+					@Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
+				</div>
+				@Html.LabelFor(model => model.FirstName, new { @class = "control-label col-md-2" })
+			</div>
+			<div class="form-group">
+				<div class="col-md-10">
+					@Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
+				</div>
+				@Html.LabelFor(model => model.LastName, new { @class = "control-label col-md-2" })
+			</div>
+			<div class="form-group">
+				<div class="col-md-10">
+					@Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+				</div>
+				@Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+			</div>
+			<div class="form-group">
+				<div class="col-md-10">
+					@Html.TextBoxFor(m => m.Campus, new { @class = "form-control" })
+				</div>
+				@Html.LabelFor(model => model.Campus, new { @class = "control-label col-md-2" })
+			</div>
+			<div class="form-group">
+				<div class="col-md-10">
+					@Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control" })
+				</div>
+				@Html.LabelFor(model => model.PhoneNumber, new { @class = "control-label col-md-2" })
+			</div>
+			<div class="form-group">
+				<div class="col-md-offset-2 col-md-10">
+					<input type="submit" class="btn btn-default" value="צור" />
+				</div>
+			</div>
+		</div>
+	}
+	<div>
+		@Html.ActionLink("בחזרה לעמוד הראשי", "Index")
+	</div>
+
+</div>
+
+	@section Scripts {
+		@Scripts.Render("~/bundles/jqueryval")
+	}

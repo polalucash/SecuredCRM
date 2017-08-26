@@ -1,0 +1,26 @@
+﻿@model SecuredCRM.Models.Tigbur
+
+@{
+	ViewBag.Title = "בחירת קורס";
+
+}
+
+<div class="container-fluid" style="background-color:white">
+	<h2>@ViewBag.Title</h2>
+	<hr />
+	@using (Html.BeginForm("SelectTutor", "TigburAdmin", FormMethod.Post))
+	{
+		<div class="form-horizontal" role = "form" >
+
+			@Html.AntiForgeryToken()
+			<div class="form-group">
+				<div class="col-md-4"style="float:right">
+					@Html.DropDownList("Id", (IEnumerable<SelectListItem>)ViewBag.CourseId, "בחר קורס", new { id = "CourseId", @class = "form-control", onchange = "this.form.submit();" })
+				</div>
+			</div>
+		</div>
+
+	}
+</div>
+
+

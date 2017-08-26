@@ -1,0 +1,84 @@
+﻿@model SecuredCRM.Models.TutorIndexModel
+
+@{
+	ViewBag.Title = "עריכת פרטי מתגבר";
+}
+
+<div class="container-fluid" style="float:right;background-color:white">
+	<h2>@ViewBag.Title</h2>
+	<hr />
+	<div class="form-horizontal">
+		@using (Html.BeginForm("Edit", "TutorAdmin", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+		{
+			@Html.AntiForgeryToken()
+			<div class="form-horizontal" role="form">
+				@Html.ValidationSummary(true)
+				@Html.HiddenFor(model => model.Id)
+
+				<div class="form-group">
+					<div class="col-md-10">
+						@Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.Email)
+					</div>
+					@Html.LabelFor(model => model.Email, new { @class = "control-label col-md-2" })
+				</div>
+				<div class="form-group">
+					<div class="col-md-10">
+						@Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
+					</div>
+					@Html.LabelFor(model => model.FirstName, new { @class = "control-label col-md-2" })
+				</div>
+				<div class="form-group">
+					<div class="col-md-10">
+						@Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
+					</div>
+					@Html.LabelFor(model => model.LastName, new { @class = "control-label col-md-2" })
+				</div>
+				<div class="form-group">
+					<div class="col-md-10">
+						@Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control" })
+					</div>
+					@Html.LabelFor(model => model.PhoneNumber, new { @class = "control-label col-md-2" })
+				</div>
+				<div class="form-group">
+					<div class="col-md-10">
+						@Html.TextBoxFor(m => m.Campus, new { @class = "form-control" })
+					</div>
+					@Html.LabelFor(model => model.Campus, new { @class = "control-label col-md-2" })
+				</div>
+
+				<div class="form-group">
+					<div class="col-md-offset-2 col-md-10">
+						<input type="submit" value="שמירה" class="btn btn-default" />
+					</div>
+				</div>
+			</div>
+
+		}
+
+				@*<div id="courses">
+						<h4>קורסי המתגבר</h4>
+					@if (ViewBag.CountCourses > 0)
+					{
+						<table class="table" id="mytable4">
+							@foreach (var item in @ViewBag.Courses)
+							{
+								<tr>
+									<td>
+										item.Name
+									</td>
+								</tr>
+							}
+						</table>
+					}*@
+
+
+				<div>
+					@Html.ActionLink("בחזרה לעמוד הראשי", "Index")
+				</div>
+			</div>
+
+</div>
+@section Scripts {
+	@Scripts.Render("~/bundles/jqueryval")
+}

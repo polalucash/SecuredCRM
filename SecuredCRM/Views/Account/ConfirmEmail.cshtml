@@ -1,0 +1,11 @@
+﻿@{
+	ViewBag.Title = "מייל אישור";
+}
+
+<h2>@ViewBag.Title</h2>
+<div style="direction:rtl;text-align:right">
+	<p>
+		תודה על אישור כתובת המייל,
+		@Html.ActionLink("נא לחץ כאן על מנת להיכנס", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })
+	</p>
+</div>

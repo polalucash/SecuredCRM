@@ -1,0 +1,38 @@
+﻿@model SecuredCRM.Models.ApplicationUser
+
+@{
+    ViewBag.Title = "מחיקת המשתמש";
+}
+<div class="container-fluid" style="float:right;background-color:white">
+	<h2>@ViewBag.Title</h2>
+	<hr />
+	<h3>האם ברצונך למחוק את המשתמש הבא מן המערכת</h3>
+
+	<dl class="align-middle">
+		<dt>
+			@Html.DisplayNameFor(model => model.Name)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.Name)
+		</dd>
+		<dt>
+			@Html.DisplayNameFor(model => model.Email)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.Email)
+		</dd>
+	</dl>
+
+	@using (Html.BeginForm())
+	{
+		@Html.AntiForgeryToken()
+
+		<div class="form-actions no-color">
+			<input type="submit" value="מחיקה" class="btn btn-default" /> |
+			@Html.ActionLink("בחזרה לעמוד הראשי", "Index")
+		</div>
+	}
+</div>
+

@@ -1,0 +1,44 @@
+﻿@model IEnumerable<SecuredCRM.Models.UnavailableInDate>
+
+
+<div class="container" style="background-color:white">
+	<p>
+		@Html.ActionLink("חדש", "UnavailableDateCreate")
+	</p>
+	<table class="table">
+		<tr>
+			<th style="text-align:right">
+				@Html.DisplayNameFor(model => model.StartDate)
+			</th>
+			<th style="text-align:right">
+				@Html.DisplayNameFor(model => model.EndDate)
+			</th>
+			<th style="text-align:right"></th>
+		</tr>
+
+		@foreach (var item in Model)
+		{
+			<tr>
+				<td>
+					@Html.DisplayFor(modelItem => item.StartDate)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.EndDate)
+				</td>
+				<td>
+					@Html.ActionLink("מחיקה", "Delete", new
+			   {
+				   userID = item.ApplicationUserId,
+				   start = item.StartDate,
+				   end = item.EndDate
+			   })
+				</td>
+			</tr>
+		}
+
+	</table>
+</div>
+<script src="~/Scripts/knockout-3.4.2.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+<script src="~/Scripts/bootstrap.js"></script>
+<script src="~/Scripts/knockout-3.4.2.js"></script>

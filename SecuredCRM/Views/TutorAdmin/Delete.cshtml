@@ -1,0 +1,62 @@
+﻿@model SecuredCRM.Models.ApplicationUser
+
+@{
+	ViewBag.Title = "מחיקת המשתמש";
+}
+
+<div class="container-fluid" style="float:right;background-color:white">
+
+	<h2>@ViewBag.Title</h2>
+	<hr />
+
+	<h3>האם ברצונך למחוק את המשתמש הבא מן המערכת</h3>
+	<dl class="align-middle">
+		<dt>
+			@Html.DisplayNameFor(model => model.TrueId)
+		</dt>
+		<dd>
+			@Html.DisplayFor(model => model.TrueId)
+		</dd>
+		<dt>
+			@Html.DisplayNameFor(model => model.LastName)
+		</dt>
+		<dd>
+			@Html.DisplayFor(model => model.LastName)
+		</dd>
+		<dt>
+			@Html.DisplayNameFor(model => model.FirstName)
+		</dt>
+		<dd>
+			@Html.DisplayFor(model => model.FirstName)
+		</dd>
+		<dt>
+			@Html.DisplayNameFor(model => model.Email)
+		</dt>
+		<dd>
+			@Html.DisplayFor(model => model.Email)
+		</dd>
+		<dt>
+			@Html.DisplayNameFor(model => model.PhoneNumber)
+		</dt>
+		<dd>
+			@Html.DisplayFor(model => model.PhoneNumber)
+		</dd>
+		<dt>
+			@Html.DisplayNameFor(model => model.Campus)
+		</dt>
+		<dd>
+			@Html.DisplayFor(model => model.Campus)
+		</dd>
+	</dl>
+
+	@using (Html.BeginForm())
+	{
+		@Html.AntiForgeryToken()
+
+		<div class="form-actions no-color">
+			<input type="submit" value="מחיקה" class="btn btn-default" /> |
+			@Html.ActionLink("בחזרה לעמוד הראשי", "Index")
+		</div>
+	}
+</div>
+

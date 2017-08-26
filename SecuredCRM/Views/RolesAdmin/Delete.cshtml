@@ -1,0 +1,40 @@
+﻿@model SecuredCRM.Models.ApplicationRole
+
+@{
+	ViewBag.Title = "מחיקת ההרשאה";
+}
+<div class="container-fluid" style="float:right;background-color:white">
+
+	<h2>@ViewBag.Title</h2>
+
+	<h3>האם ברצונך למחוק את ההרשאה הבא </h3>
+	<p>מחיקת ההרשאה תסיר את כל המשתמשים מן ההרשאה</p>
+	<hr />
+	<dl class="align-middle">
+		<dt>
+			הרשאה
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.Name)
+		</dd>
+		<dt>
+			תיאור
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.Description)
+		</dd>
+	</dl>
+	<hr />
+	@using (Html.BeginForm())
+	{
+		@Html.AntiForgeryToken()
+
+		<div class="form-actions no-color">
+			<input type="submit" value="מחיקה" class="btn btn-default" /> |
+			@Html.ActionLink("בחזרה לעמוד הראשי", "Index")
+		</div>
+	}
+</div>
+

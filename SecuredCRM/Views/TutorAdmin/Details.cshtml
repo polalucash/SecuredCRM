@@ -1,0 +1,255 @@
+﻿@model SecuredCRM.Models.TutorViewModel
+
+@{
+	ViewBag.Title = "פרטי המתגבר";
+}
+
+<!DOCTYPE html>
+
+<head>
+	<meta name="viewport" content="width=device-width" />
+	<style>
+
+
+		#mytable1 {
+			width: 20%;
+			float: right;
+			margin: 20px;
+		}
+
+			#mytable1 th {
+				width: 100%;
+				border-color: white;
+			}
+		#mytable1 td {
+			border-color: white;
+		}
+
+
+		#mytable2 tr, #mytable4 tr, #mytable1 tr {
+			background-color: white;
+		}
+
+
+		#mytable4 th, #mytable1 th, #mytable2 th, #mytable4 td, #mytable1 td, #mytable2 td {
+			padding: 8px;
+		}
+
+
+		#mytable4 tH, #mytable1 th, #mytable2 th {
+			padding-top: 12px;
+			padding-bottom: 12px;
+			text-align: right;
+		}
+
+		#courses {
+			margin: 10px;
+			margin-right: 30px;
+			float: right;
+		}
+
+		#dates {
+			margin: 10px;
+			margin-right: 30px;
+			float: right;
+		}
+	</style>
+
+	<title>@ViewBag.Title</title>
+</head>
+<body>
+	<h2>@ViewBag.Title</h2>
+	<hr />
+	<div class="container-fluid" style="direction:rtl">
+		<table class="table" id="mytable1">
+			<tr>
+				<th>
+					@Html.DisplayNameFor(model => model.ApplicationUser.LastName)
+				</th>
+				<td>
+					@Html.DisplayFor(model => model.ApplicationUser.LastName)
+				</td>
+			</tr>
+			<tr>
+				<th>
+					@Html.DisplayNameFor(model => model.ApplicationUser.FirstName)
+				</th>
+				<td>
+					@Html.DisplayFor(model => model.ApplicationUser.FirstName)
+				</td>
+			</tr>
+			<tr>
+				<th>
+					@Html.DisplayNameFor(model => model.ApplicationUser.TrueId)
+				</th>
+				<td>
+					@Html.DisplayFor(model => model.ApplicationUser.TrueId)
+				</td>
+			</tr>
+			<tr>
+				<th>
+					@Html.DisplayNameFor(model => model.ApplicationUser.Email)
+				</th>
+				<td>
+					@Html.DisplayFor(model => model.ApplicationUser.Email)
+				</td>
+			</tr>
+			<tr>
+				<th>
+					@Html.DisplayNameFor(model => model.ApplicationUser.PhoneNumber)
+				</th>
+				<td>
+					@Html.DisplayFor(model => model.ApplicationUser.PhoneNumber)
+				</td>
+			</tr>
+			<tr>
+				<th>
+					@Html.DisplayNameFor(model => model.ApplicationUser.Campus)
+				</th>
+				<td>
+					@Html.DisplayFor(model => model.ApplicationUser.Campus)
+				</td>
+			</tr>
+		</table>
+
+		<div id="courses">
+			<h4>קורסי המתגבר</h4>
+			@if (Model.Courses.Count > 0)
+			{
+				<table class="table" id="mytable4">
+					@foreach (var item in Model.Courses)
+					{
+						<tr>
+							<td>
+								@Html.DisplayFor(modelItem => item.Name)
+							</td>
+							<td>
+								@Html.ActionLink("Delete", "DeleteCourseTutor", new { ApplicationUserId = Model.ApplicationUser.Id, CourseId = item.Id })
+							</td>
+						</tr>
+					}
+				</table>
+			}
+			<div id="inputForm">
+				@using (Html.BeginForm("InsertCourse", "TutorAdmin", new { ApplicationUserId = Model.ApplicationUser.Id }, FormMethod.Post))
+			{
+					@Html.DropDownList("Id", (IEnumerable<SelectListItem>)ViewBag.CoursesList, "בחר קורס להוספה", new { @class = "form-control" })
+					<input type="submit" value="Apply" />
+			}
+			</div>
+		</div>
+		<div id="dates">
+			@if (Model.UnavailableInDates.Count > 0)
+			{
+				<h4>תאריכים בהם לא פנוי</h4>
+				<table class="table" id="mytable2">
+					@foreach (var item in Model.UnavailableInDates)
+					{
+						<tr>
+							<td>
+								@Html.DisplayFor(modelItem => item.StartDate)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.EndDate)
+							</td>
+						</tr>
+					}
+				</table>
+			}
+			else
+			{
+
+				<h4>כרגע לא קיימים תאריכים בהם המתגבר לא זמין</h4>
+			}
+		</div>
+	</div>
+	<br />
+	<div class="container-fluid" style="background-color:white">
+		@if (Model.Tigburs.Count > 0)
+			{
+			<h4>התגבורים הקיימים</h4>
+			<hr />
+			<table class="table-responsive" id="mytable">
+				<thead>
+					<tr>
+						<th style="text-align:right">
+							@Html.DisplayNameFor(model => model.Tigburs.First().TuteeName)
+						</th>
+						<th style="text-align:right">
+							@Html.DisplayNameFor(model => model.Tigburs.First().TuteeEmail)
+						</th>
+						<th style="text-align:right">
+							@Html.DisplayNameFor(model => model.Tigburs.First().TuteePhone)
+						</th>
+						<th style="text-align:right">
+							@Html.DisplayNameFor(model => model.Tigburs.First().CourseTutor.Course.Name)
+						</th>
+						<th style="text-align:right">
+							@Html.DisplayNameFor(model => model.Tigburs.First().AssignmentStartDate)
+						</th>
+						<th style="text-align:right">
+							@Html.DisplayNameFor(model => model.Tigburs.First().AssignmentEndDate)
+						</th>
+						<th style="text-align:right">
+							@Html.DisplayNameFor(model => model.Tigburs.First().AssignmentTotal)
+						</th>
+						<th style="text-align:right">
+							@Html.DisplayNameFor(model => model.Tigburs.First().AssignmentDone)
+						</th>
+						<th style="text-align:right">
+							@Html.DisplayNameFor(model => model.Tigburs.First().AssignmentDoneApproved)
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					@foreach (var item in Model.Tigburs)
+				{
+						<tr>
+							<td>
+								@Html.DisplayFor(modelItem => item.TuteeName)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.TuteeEmail)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.TuteePhone)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.CourseTutor.Course.Name)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.AssignmentStartDate)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.AssignmentEndDate)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.AssignmentTotal)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.AssignmentDone)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.AssignmentDoneApproved)
+							</td>
+						</tr>
+				}
+				</tbody>
+			</table>
+		}
+		else
+		{
+
+			<h4>כרגע לא קיימים תגבורים</h4>
+			}
+
+	<p>
+		@Html.ActionLink("עריכה", "Edit", new { id = Model.ApplicationUser.Id }) |
+		@Html.ActionLink("בחזרה לעמוד הראשי", "Index")
+	</p>
+	</div>
+
+	@section Scripts {
+		@Scripts.Render("~/bundles/jqueryval")
+	}
+</body>
